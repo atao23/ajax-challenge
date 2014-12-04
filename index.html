@@ -3,21 +3,52 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Review page for the Super Bass-o-Matic">
+        <meta name="author" content="Annie Tao">
+
         <title>Product Comments</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-
-        <main class="container">
+        <main class="container" ng-app="ReviewsApp" ng-controller="ReviewsController">
             <section>
                 <img src="img/super-bass-o-matic-76.jpg" alt="product picture" class="product-picture">
                 <h1>The Super Bass-o-Matic '76</h1>
+                <h3>Price: $1000.00</h3>
+                <h3>Product Information</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia cumque deserunt ullam repudiandae nisi corporis! Ipsum, ducimus commodi, itaque porro distinctio consequuntur! Autem doloremque numquam nemo ex nulla tempora quis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde nihil doloribus excepturi quisquam error possimus veritatis facere, commodi cumque ab atque dolore ducimus obcaecati ipsa, impedit! Consequuntur, eligendi iure cumque!</p>
             </section>
 
             <section>
-                <h2>Add a Comment</h2>
+                <h2>Add a Review</h2>
+
+                <form ng-submit="addReview()">
+                    <div class="form-group">
+                        <label for="review-title">Title</label>
+                        <input type="text" id="review-title" class="form-control" placeholder="Title of your review" ng-model="newReview.title"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="review-name">Name</label>
+                        <input type="text" id="review-name" class="form-control" placeholder="Your name" ng-model="newReview.name"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="review-rating">Rating</label>
+                        <rating max="5" ng-model="newReview.rating"></rating>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="review-comment">Review</label>
+                        <textarea cols ="30" rows="5" id="review-comment" class="form-control" placeholder="Write your review here..." ng-model="newReview.comment"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" ng-disabled="inserting">Add Review</button>
+                    </div>
+                </form>
+
                 <!--  
                 put a form here for entering a new comment
                 the user must select a rating, and enter a name, title, and comment body
@@ -29,13 +60,34 @@
             </section>
 
             <section>
-                <h2>Comments</h2>
+                <h2>Reviews</h2>
+
+                <p ng-if="!reviews.length">No comments yet. Be the first to review this!</p>
+
+                <div ng-repeat="review in reviews">
+                    <h3 class="review-titles">{{review.title}}</h3>
+                    <h5 class="review-names">Author: {{review.name}}</h4>
+                    <rating max="5" ng-model="review.rating" readonly="true"></rating>
+                    <p> 
+                        {{review.comment}} 
+                    </p>
+
+                    <div class="votes">
+                        <span><small>Was this review helpful?</small></span> {{review.votes || 0}}
+                        <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementVotes(review, 1)"></span>
+                        <span class="glyphicon glyphicon-thumbs-down" ng-click="incrementVotes(review, -1)"></span>
+                    </div>
+
+                    <button class="btn btn-danger delete_button" ng-click="deletePost(review)">Delete this post</button>
+
+                </div>
                 <!-- 
                 display existing comments here
                 each comment should also have UI allowing the user to vote up/down the comment
                 as well as delete it
                  -->
             </section>
+            <img src="img/ajax-spinner.gif" alt="ajax-loading" ng-if="loading"/>
 
         </main>
 

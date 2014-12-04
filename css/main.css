@@ -1,13 +1,39 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:400,500);
+@import url(http://fonts.googleapis.com/css?family=Raleway);
 
 body {
-    font-family: 'Ubuntu', 'Helvetica Neue', 'Helvetica', sans-serif;
+    font-family: 'Raleway', 'Helvetica Neue', 'Helvetica', sans-serif;
     font-weight: 400;
 }
 
 .product-picture {
     float: left;
-    height: 130px;
+    height: 225px;
     margin-right: 10px;
 }
 
+main {
+	padding: 1.5em;
+}
+
+.review-names {
+	margin-top: 0px;
+	color: gray;
+}
+
+.review-titles {
+	margin-bottom: 0px;
+}
+
+.glyphicon-thumbs-up:hover {
+	color: green;
+}
+
+.glyphicon-thumbs-down:hover {
+	color: red;
+
+}
+
+.votes {
+	margin-bottom: 5px;
+}
