@@ -48,15 +48,6 @@
                         <button type="submit" class="btn btn-primary" ng-disabled="inserting">Add Review</button>
                     </div>
                 </form>
-
-                <!--  
-                put a form here for entering a new comment
-                the user must select a rating, and enter a name, title, and comment body
-                before the comment can be saved to the server
-                for the rating selection, use the Angular Bootstrap Rating directive 
-                http://angular-ui.github.io/bootstrap/#/rating
-                their script file is included below
-                -->
             </section>
 
             <section>
@@ -81,11 +72,6 @@
                     <button class="btn btn-danger delete_button" ng-click="deletePost(review)">Delete this post</button>
 
                 </div>
-                <!-- 
-                display existing comments here
-                each comment should also have UI allowing the user to vote up/down the comment
-                as well as delete it
-                 -->
             </section>
             <img src="img/ajax-spinner.gif" alt="ajax-loading" ng-if="loading"/>
 
